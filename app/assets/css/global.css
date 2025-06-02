@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.text-larger {
+    font-size: larger;
+}
+
+.text-lg {
+    font-size: large;
+}
+
+.text-base {
+    font-size: medium;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.extrabold {
+    font-weight: bolder;
+}
+
+
+form,
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    gap: 20px;
+    width: 400px;
+    max-width: 100%;
+    padding: 30px 20px;
+    margin: 50px auto;
+}
+
+.input-group {
+    gap: 15px;
+}
+
+.input-group input,
+select {
+    height: 40px;
+}
+
+.input-group label {
+    font-weight: bold;
+}
+
+.input-group select {
+    border: 2px solid seagreen;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+    font-size: 15px;
+}
+
+table tbody tr:hover {
+    background-color: #f4f1fa;
+}
+
+.bg-green {
+    background-color: seagreen;
+    color: white;
+}
+
+button {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+button [type="submit"] {
+    margin: 30px;
+    height: 40px;
+    cursor: pointer;
+}
+
+button.bg-green:hover {
+    background-color: #00aa00;
+}
+
+.bg-white {
+    background-color: white;
+    color: seagreen
+}
+
+.text-green {
+    color: seagreen;
+}
+
+.text-white {
+    color: white
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.card a {
+    text-decoration: none;
+    color: #2980b9;
+    font-weight: bold;
+}
+
+.shadow {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.status {
+    padding: 8px;
+    color: white;
+    border-radius: 12px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.status.upcoming {
+    background-color: #f39c12;
+}
+
+.status.completed,
+.status.available {
+    background-color: #2ecc71;
+}
+
+.status.cancelled,
+.status.fully-booked {
+    background-color: #e74c3c;
+}
