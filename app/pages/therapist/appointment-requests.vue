@@ -79,34 +79,20 @@ async function acceptAppointmentRequest() {
                 All Appointment Requests
             </h1>
 
-            <table class="requests-table">
-                <thead class="bg-green">
-                    <tr>
-                        <th>Patient ID</th>
-                        <th>Patient Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Date</th>
-                        <th>Symptoms</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="request in appointmentRequests" :key="request._id">
-                        <td>{{ request.patientId }}</td>
-                        <td>{{ request.patientName }}</td>
-                        <td>{{ request.email }}</td>
-                        <td>{{ request.phone }}</td>
-                        <td>{{ request.date }}</td>
-                        <td :title="request.symptoms">{{ request.symptoms }}</td>
-                        <td>
-                            <button class="bg-green" @click="selectedRequestId = request._id">
-                                Accept
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <TableView :data="appointmentRequests" :actions="[
+                {
+                    class: 'bg-green',
+                    handler: request => selectedRequestId = request._id,
+                    label: 'Accept'
+                }
+            ]">
+
+                <template #field-symptoms="{ value: symptoms }" :>
+                    <span :title="symptoms"> {{ symptoms }}
+                    </span>
+                </template>
+
+            </TableView>
 
         </template>
     </div>
@@ -128,5 +114,4 @@ h5 {
 .accept-modal .modal-close {
     text-align: end;
 }
-
 </style>

@@ -29,11 +29,22 @@ const handleLogin = async function () {
     <form @submit.prevent="handleLogin">
         <h1> Login </h1>
         <div class="input-box">
-            <i class='bx bx-user-circle'></i>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="2" />
+                <path d="M6.168 18.849A6 6 0 0 1 12 16a6 6 0 0 1 5.832 2.849" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+            </svg>
+
             <input v-model="loginFormState.email" type="text" placeholder="email" required>
         </div>
         <div class="input-box">
-            <i class='bx bx-lock-alt'></i>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2" />
+                <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <circle cx="12" cy="16" r="1" fill="currentColor" />
+            </svg>
+
             <input v-model="loginFormState.password" type="password" placeholder="password" required>
         </div>
         <button type="submit"> Login </button>
@@ -65,9 +76,6 @@ form {
     align-items: center;
 }
 
-.input-box i {
-    font-size: 36px;
-}
 
 .input-box input {
     background: transparent;

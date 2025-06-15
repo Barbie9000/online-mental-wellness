@@ -17,6 +17,7 @@ export default defineEventHandler(async event => {
         symptoms: appointment.symptoms,
         time: appointment.time,
         date: formatDate(appointment.date),
+        status:appointment.status
     }))
 
 

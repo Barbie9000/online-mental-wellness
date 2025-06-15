@@ -30,10 +30,12 @@ export default defineEventHandler(async event => {
                 }
             } : {}),
             ...((emergencyNames || emergencyPhone || emergencyRelationship) ? {
-                ...user.emergency,
-                ...(emergencyNames ? { names: emergencyNames } : {}),
-                ...(emergencyPhone ? { phone: emergencyPhone } : {}),
-                ...(emergencyRelationship ? { relationship: emergencyRelationship } : {})
+                emergency: {
+                    ...user.emergency,
+                    ...(emergencyNames ? { names: emergencyNames } : {}),
+                    ...(emergencyPhone ? { phone: emergencyPhone } : {}),
+                    ...(emergencyRelationship ? { relationship: emergencyRelationship } : {})
+                }
             } : {}),
 
         },

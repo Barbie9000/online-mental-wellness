@@ -20,6 +20,11 @@ const navLinks = [
         to: "/patient/book-appointment",
         action: "Request Now"
     },
+    {
+        label: "Donate",
+        to: "/patient/donate",
+        action: "Support our Mission"
+    },
 ]
 
 </script>

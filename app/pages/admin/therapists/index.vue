@@ -44,38 +44,18 @@ async function deleteTherapist(therapistId) {
             <NuxtLink class="bg-white" to="/admin/therapists/add">Add a therapist</NuxtLink>
         </h1>
 
-        <table class="therapist-table">
-            <thead class="bg-green">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Availability</th>
-                    <th>Experience</th>
-                    <th>Rating</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="therapist in therapists" :key="therapist.id">
-                    <td>{{ therapist.id }}</td>
-                    <td>{{ therapist.names }}</td>
-                    <td>{{ therapist.email }}</td>
-                    <td>{{ therapist.phone }}</td>
-                    <td>
-                        <span class="status" :class="[therapist.availability]">{{ therapist.availability }}</span>
-                    </td>
-                    <td>{{ therapist.yearsOfExperience }}</td>
-                    <td>{{ therapist.rating }}</td>
-                    <td>
-                        <button class="delete" @click="() => deleteTherapist(therapist.id)">
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <TableView :data="therapists" :aliases="{ yearsOfExperience: 'Experience' }" :actions="[
+            {
+                class: 'delete',
+                label: 'Delete',
+                handler: therapist => deleteTherapist(therapist.id)
+            }
+        ]">
+
+            <template #field-availability="{ item: therapist }">
+                <span class="status" :class="[therapist.availability]">{{ therapist.availability }}</span>
+            </template>
+        </TableView>
 
     </template>
 </template>

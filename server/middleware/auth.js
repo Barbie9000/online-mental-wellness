@@ -3,10 +3,13 @@
 
 export default defineEventHandler(async (event) => {
 
+    let user;
+
     if (event.path.startsWith('/api')) {
         const plainPath = event.path.replace('/api', '')
 
         const requiresAuth = /patient|therapist|admin/.test(plainPath.split('/')[1]);
+
         if (requiresAuth) {
             const session = await requireUserSession(event)
             const throwUnauthorizedError = () => {
@@ -28,8 +31,18 @@ export default defineEventHandler(async (event) => {
                 throwUnauthorizedError()
             }
 
-            event.context.user = session.user
+            user = session.user
 
+        } else {
+            const { user: sessionUser } = await getUserSession(event)
+
+            if (sessionUser) {
+                user = sessionUser;
+            }
         }
+
+        event.context.user = user
     }
+
+
 })

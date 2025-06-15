@@ -58,26 +58,6 @@ select {
     text-align: center;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-table th,
-table td {
-    padding: 14px;
-    text-align: left;
-    border-bottom: 1px solid #ecf0f1;
-    font-size: 15px;
-}
-
-table tbody tr:hover {
-    background-color: #f4f1fa;
-}
-
 .bg-green {
     background-color: seagreen;
     color: white;

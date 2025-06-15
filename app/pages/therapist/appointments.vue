@@ -47,39 +47,17 @@ async function updateAppointmentStatus(appointmentId, appointmentStatus) {
                 All Appointment Requests
             </h1>
 
-            <table class="requests-table">
-                <thead class="bg-green">
-                    <tr>
-                        <th>Patient ID</th>
-                        <th>Patient Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Symptoms</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="appointment in therapistAppointments" :key="appointment._id">
-                        <td>{{ appointment.patientId }}</td>
-                        <td>{{ appointment.patientName }}</td>
-                        <td>{{ appointment.email }}</td>
-                        <td>{{ appointment.phone }}</td>
-                        <td>{{ appointment.date }}</td>
-                        <td>{{ appointment.time }}</td>
-                        <td :title="appointment.symptoms">{{ appointment.symptoms }}</td>
-                        <td>
-                            <select :value="appointment.status" 
-                                @change="(e) => updateAppointmentStatus(appointment._id, e.target.value)">
-                                <option :value="APPOINTMENT_STATUSES.UPCOMING">Upcoming</option>
-                                <option :value="APPOINTMENT_STATUSES.COMPLETED">Completed</option>
-                                <option :value="APPOINTMENT_STATUSES.CANCELLED">Cancelled</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <TableView :data="therapistAppointments">
+
+                <template #field-status="{ item: appointment }">
+                    <select :value="appointment.status"
+                        @change="(e) => updateAppointmentStatus(appointment._id, e.target.value)">
+                        <option :value="APPOINTMENT_STATUSES.UPCOMING">Upcoming</option>
+                        <option :value="APPOINTMENT_STATUSES.COMPLETED">Completed</option>
+                        <option :value="APPOINTMENT_STATUSES.CANCELLED">Cancelled</option>
+                    </select>
+                </template>
+            </TableView>
 
         </template>
     </div>
