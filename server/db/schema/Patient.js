@@ -58,6 +58,9 @@ const patientSchema = new Schema({
         password: {
             type: String,
             required: true
+        },
+        lastLoggedInAt: {
+            type: Date
         }
     }
 }, { timestamps: true })

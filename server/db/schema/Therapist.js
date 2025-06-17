@@ -1,4 +1,4 @@
-import { Schema } from "mongoose"
+import mongoose, { Schema } from "mongoose"
 
 const therapistSchema = new Schema({
     id: {
@@ -44,12 +44,6 @@ const therapistSchema = new Schema({
         required: true,
         validator: (year) => new Date().getFullYear() > year
     },
-    rating: {
-        type: Number,
-        min: 0,
-        max: 5,
-        default: 0
-    },
     auth: {
         role: {
             type: String,
@@ -58,6 +52,9 @@ const therapistSchema = new Schema({
         },
         password: {
             type: String,
+        },
+        lastLoggedInAt: {
+            type: Date
         }
     }
 })
@@ -66,7 +63,6 @@ const therapistSchema = new Schema({
 therapistSchema.virtual('yearsOfExperience').get(function () {
     return new Date().getFullYear() - this.yearRegistered
 })
-
 
 therapistSchema.set('toObject', { virtuals: true });
 therapistSchema.set('toJSON', { virtuals: true });

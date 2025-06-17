@@ -21,7 +21,7 @@ export default defineEventHandler(async event => {
 
     // Verify password
     const isValidPassword = await verifyPassword(user.auth.password, plainPassword);
-    
+
     if (!isValidPassword) {
         throw createError({
             statusCode: 401,
@@ -29,6 +29,12 @@ export default defineEventHandler(async event => {
             message: 'Invalid Password'
         });
     }
+
+    const loggedInAt = Date.now()
+
+    user.auth.lastLoggedInAt = loggedInAt;
+
+    await user.save()
 
     user = user.toObject()
 

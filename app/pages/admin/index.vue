@@ -20,6 +20,16 @@ const navLinks = [
         to: "/admin/therapists/add",
         action: "Add Now"
     },
+    {
+        label: "Patients",
+        to: "/admin/patients",
+        action: "Manage/Delete"
+    },
+    {
+        label: "Donations",
+        to: "/admin/donations",
+        action: "Manage Funds"
+    },
 ]
 
 </script>

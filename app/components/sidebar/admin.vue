@@ -11,6 +11,14 @@ const navLinks = [
     {
         to: "/admin/therapists",
         label: "Therapists"
+    },
+    {
+        to: "/admin/patients",
+        label: "Patients"
+    },
+    {
+        to: "/admin/donations",
+        label: "Donations"
     }
 ]
 

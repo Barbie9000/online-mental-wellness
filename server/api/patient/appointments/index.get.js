@@ -9,10 +9,12 @@ export default defineEventHandler(async event => {
     const appointments = await Appointment.find({ patient: user._id }).populate('assignedTherapist')
 
     return appointments.map(appointment => ({
+        _id: appointment._id,
         date: formatDate(appointment.date),
         time: appointment.time ?? 'N/A',
         therapist: buildName(appointment.assignedTherapist?.personalInfo?.name),
-        status: appointment.status
+        status: appointment.status,
+        rating: appointment.rating
     }))
 
 })

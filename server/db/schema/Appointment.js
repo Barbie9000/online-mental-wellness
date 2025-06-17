@@ -24,7 +24,13 @@ const appointmentSchema = new Schema({
         type: String,
         enum: ['upcoming', 'completed', 'cancelled'],
         default: 'upcoming'
-    }
+    },
+    rating: {
+        type: Number,
+        min: 0,
+        max: 5,
+        default: 0
+    },
 }, { timestamps: true })
 
 

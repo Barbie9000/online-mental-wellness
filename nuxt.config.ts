@@ -18,5 +18,5 @@ export default defineNuxtConfig({
       CALLBACKURL: process.env.CALLBACKURL,
     }
   },
-  modules: ['nuxt-auth-utils']
+  modules: ['nuxt-auth-utils', '@nuxt/icon']
 })
