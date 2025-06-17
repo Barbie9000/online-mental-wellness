@@ -67,11 +67,22 @@ onMounted(() => {
 
 // Get all fields from data, excluding fields starting with underscore
 const getAllFields = () => {
-    if (!sanitizedData.value.length) return []
+    if (!props.data.length) return [] 
 
-    const firstItem = sanitizedData.value[0]
-    const fields = Object.keys(firstItem).filter(key => !key.startsWith('_'))
+    // Collect all unique field names from all records
+    const allFieldsSet = new Set()
+    
+    props.data.forEach(item => {
+        Object.keys(item).forEach(key => {
+            if (!key.startsWith('_')) {
+                allFieldsSet.add(key)
+            }
+        })
+    })
 
+    // Convert to array and create field objects
+    const fields = Array.from(allFieldsSet)
+    
     return fields.map(field => ({
         key: field,
         label: props.aliases[field] || toProperCase(field),

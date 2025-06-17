@@ -70,8 +70,19 @@ therapistSchema.set('toJSON', { virtuals: true });
 
 therapistSchema.pre('save', async function () {
     if (this.isNew) {
-        this.id = `TH-${(await this.collection.countDocuments({}) + 1).toString().padStart(3, '0')}`
-        this.auth.password = await hashPassword(this.id)
+        // Find the most recently created therapist
+        const lastTherapist = await this.collection
+            .findOne({}, { sort: { createdAt: -1 } })
+
+        let nextNumber = 1
+
+        if (lastTherapist && lastTherapist.id) {
+            // Extract number from ID like "TH-001" -> 1
+            const lastNumber = parseInt(lastTherapist.id.replace('TH-', ''))
+            nextNumber = lastNumber + 1
+        }
+
+        this.id = `TH-${nextNumber.toString().padStart(3, '0')}`
     }
 })
 

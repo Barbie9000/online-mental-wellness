@@ -68,7 +68,19 @@ const patientSchema = new Schema({
 
 patientSchema.pre('save', async function () {
     if (this.isNew) {
-        this.id = `P-${(await this.collection.countDocuments({}) + 1).toString().padStart(3, '0')}`
+        // Find the most recently created patient
+        const lastPatient = await this.collection
+            .findOne({}, { sort: { createdAt: -1 } })
+
+        let nextNumber = 1
+
+        if (lastPatient && lastPatient.id) {
+            // Extract number from ID like "P-001" -> 1
+            const lastNumber = parseInt(lastPatient.id.replace('P-', ''))
+            nextNumber = lastNumber + 1
+        }
+
+        this.id = `P-${nextNumber.toString().padStart(3, '0')}`
     }
 })
 
